@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Web Responsive Tool</title>
+    <meta property="og:title" content="Website Responsive Testing" />
+    <meta property="og:url" content="https://website-responsive-test.netlify.app/" />
+    <meta property="og:image" content="/img/meta-image.png" />
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon" />
+
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" />
+    <!-- This is SASS converted file please check SASS folder and use SCSS complier -->
+    <link rel="stylesheet" href="/scss/app.css" />
+  </head>
+
+  <body>
+    <section id="app" class="dashboard">
+      <div id="top-navbar">
+        <div class="top-navbar-inner w-100">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-3 col-lg-3 col-12">
+                <div class="search-bar-block">
+                  <ul>
+                    <li>
+                      <div class="inner">
+                        <span class="badge d-none d-lg-inline-block">Site URL</span>
+                        <div class="search-bar">
+                          <input type="text" class="form-control" name="email" v-model="url"
+                            placeholder="Enter Website URL" />
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="refresh-button">
+                        <span class="badge d-none d-lg-inline-block opacity-0">Refresh</span>
+                        <button onclick="refreshIframe();" class="d-inline">
+                          <img class="img-fluid" src="/img/refresh.svg" alt="" />
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-9 col-lg-9 col-12">
+                <ul class="devices-list">
+                  <li>
+                    <span class="badge badge-1">Custom
+                      <span v-if="selectOne.deviceName">
+                        || {{selectOne.deviceName}}</span></span>
+                    <ul class="custom-inputs">
+                      <li>
+                        <input class="form-control" type="number" name="" v-model="selectedFrame.width"
+                          placeholder="Width" />
+                      </li>
+                      <li>
+                        <img class="img-fluid close-icon" src="/img/cancel.svg" alt="" />
+                      </li>
+                      <li>
+                        <input class="form-control" type="text" name="" v-model="selectedFrame.height"
+                          placeholder="Height" />
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <span class="badge badge-2">Desktop</span>
+                    <div class="box">
+                      <select v-model="selectOne" @change="onDesktopChange" :placeholder="placeholder">
+                        <option v-for="(item, index) in desktop" v-bind:value="item" v-bind:key="item.id">
+                          {{item.name}}
+                          <span v-if="item.deviceName">
+                            {{item.deviceName}}
+                          </span>
+                        </option>
+                      </select>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="badge badge-3">Tabs</span>
+                    <div class="box">
+                      <select v-model="selectOne" @change="onTabChange">
+                        <option v-for="(item, index) in tab" v-bind:value="item" :key="index">
+                          {{item.name}}
+                          <span v-if="item.deviceName">
+                            {{item.deviceName}}
+                          </span>
+                        </option>
+                      </select>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="badge badge-4">Mobile</span>
+                    <div class="box">
+                      <select v-model="selectOne" @change="onMobileChange">
+                        <option v-for="(item, index) in mobile" v-bind:value="item" :key="index">
+                          {{item.name}}
+                          <span v-if="item.deviceName">
+                            {{item.deviceName}}
+                          </span>
+                        </option>
+                      </select>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="badge badge-5">bootsrap 5 & ELE UI</span>
+                    <div class="box">
+                      <select v-model="selectOne" @change="onMobileChange">
+                        <option v-for="(item, index) in bootsrap" v-bind:value="item" :key="index" :disabled="!item.id">
+                          {{item.name}}
+                          <span v-if="item.deviceName">
+                            {{item.deviceName}}
+                          </span>
+                        </option>
+                      </select>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="browser-preview">
+        <iframe :src="url" title="" id="myframe" frameborder="0" :width="selectedFrame.width"
+          :height="selectedFrame.height" crossorigin="anonymous" name="Right"></iframe>
+      </div>
+    </section>
+
+    <div class="nav-toggle">
+      <img class="img-fluid" src="/img/down-arrow-sketch.svg" alt="" />
+    </div>
+
+    <!-- External Javascript script files -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"
+      integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
+    </script>
+    <script src="/js/vue.js"></script>
+    <!-- Custom Script file-->
+    <script src="/js/app.js"></script>
+    <script src="/js/data.js"></script>
+  </body>
+</html>
